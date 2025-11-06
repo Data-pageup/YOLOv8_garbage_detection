@@ -15,6 +15,9 @@ A comprehensive experimental study comparing YOLOv8 Nano model performance acros
 - [Installation](#installation)
 - [Usage](#usage)
 
+<img width="303" height="172" alt="image" src="https://github.com/user-attachments/assets/0d267292-7d16-44ac-9b0c-81509ebb9ee0" />
+
+
 ## Overview
 
 This project evaluates how input image resolution impacts object detection performance using YOLOv8 Nano. The study compares two configurations:
