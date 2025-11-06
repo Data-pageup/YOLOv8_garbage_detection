@@ -15,7 +15,6 @@ A comprehensive experimental study comparing YOLOv8 Nano model performance acros
 - [Installation](#installation)
 - [Usage](#usage)
 
-<img width="303" height="172" alt="image" src="https://github.com/user-attachments/assets/0d267292-7d16-44ac-9b0c-81509ebb9ee0" />
 
 
 ## Overview
@@ -89,11 +88,22 @@ Optimizer:          SGD
 - mAP@0.5: 0.3520
 - mAP@0.5:0.95: 0.1427
 
+<img width="303" height="172" alt="image" src="https://github.com/user-attachments/assets/8a20d182-f18b-4656-80b2-cc889cfc0147" />
+<img width="602" height="399" alt="image" src="https://github.com/user-attachments/assets/36a955c5-75bb-45d9-98e4-724967f516d6" />
+<img width="270" height="179" alt="image" src="https://github.com/user-attachments/assets/72bfc2c9-03d6-4394-8b2f-be9db9a23e46" />
+
+
+
 **608×608 Configuration:**
 - Precision: 0.4895
 - Recall: 0.4000
 - mAP@0.5: 0.3624
 - mAP@0.5:0.95: 0.1490
+  
+<img width="279" height="177" alt="image" src="https://github.com/user-attachments/assets/dbcfc6a7-337c-40e0-a27a-f02e63821de2" />
+<img width="792" height="441" alt="image" src="https://github.com/user-attachments/assets/4d1e91b1-2c6d-4a40-9f36-2df225b2b6fe" />
+<img width="593" height="394" alt="image" src="https://github.com/user-attachments/assets/92388351-a6cf-42e5-b63c-46eae151db80" />
+
 
 ## Analysis
 
