@@ -1,156 +1,199 @@
-🗑️ YOLOv8 Garbage Detection — Input Size Comparison
+# YOLOv8 Object Detection: Input Size Comparison Lab Report
+## Garbage Detection Dataset
 
-This repository contains a full lab report and results for YOLOv8-based garbage detection, comparing two input resolutions (416×416 vs. 608×608) to measure accuracy, recall, inference speed, and training cost.
+### 1. Dataset Summary
 
-If you need the YOLOv8 training notebook (.ipynb), contact me here:
-📧 amirthaganeshramesh@gmail.com
+**Dataset Name:** Garbage Detection (Roboflow)
 
-📦 Dataset Summary
+**Dataset Statistics:**
+- Total Images: 1,255
+- Number of Classes: 1
+  - garbage: All types of garbage/trash
 
-Dataset: Garbage Detection (Roboflow)
-Total Images: 1,255
-Classes: 1 (garbage)
+**Data Split:**
+- Training: 1,155 images (92%)
+- Validation: 50 images (4%)
+- Testing: 50 images (4%)
 
-Split:
+**Key Dataset Characteristics:**
+- Format: YOLOv8 format (YOLO11 compatible)
+- Image Resolution: Variable
+- Annotation Format: Bounding boxes with class labels
+- Challenge: Single-class dataset; requires focus on detection across varying garbage types and contexts
 
-Training: 1,155 (92%)
+---
 
-Validation: 50 (4%)
+### 2. Experimental Setup
 
-Testing: 50 (4%)
+#### 2.1 Model Architecture
+- Model: YOLOv8 Nano (YOLOv8n)
+- Framework: Ultralytics YOLOv8
+- Pre-trained Weights: YOLOv8 COCO pretrained
+- Hardware: GPU (NVIDIA Tesla T4, 15GB VRAM)
+- Batch Size: 32
 
-Key Characteristics:
+#### 2.2 Experimental Configuration
 
-YOLOv8/YOLO11-compatible format
+**Baseline Training (416×416):**
+- Input Size: 416×416 pixels
+- Epochs: 10
+- Training Time: 1.99 minutes
+- Device: CUDA (GPU)
 
-Varying image resolutions
+**Experiment 1 (608×608):**
+- Input Size: 608×608 pixels
+- Epochs: 10
+- Training Time: 3.23 minutes
+- Device: CUDA (GPU)
 
-Bounding-box annotations
+---
 
-Single-class dataset → higher importance of recall
+### 3. Results
 
-⚙️ Experimental Setup
-✅ Model Architecture
+#### 3.1 Performance Metrics Comparison
 
-Model: YOLOv8n (Nano)
+| Metric | 416×416 | 608×608 | Change |
+|--------|---------|---------|--------|
+| mAP@0.5 | 0.3520 | 0.3630 | +0.0110 (+3.1%) |
+| mAP@0.5:0.95 | 0.1420 | 0.1490 | +0.0070 (+4.9%) |
+| Precision | 0.5550 | 0.4900 | -0.0650 (−11.7%) |
+| Recall | 0.3220 | 0.4000 | +0.0780 (+24.2%) |
+| Inference Time (ms/image) | 1.3 | 2.6 | +1.3 (100% slower) |
+| Model Size (MB) | 6.2 | 6.2 | — |
+| Training Time (minutes) | 1.99 | 3.23 | +1.24 (+62.3%) |
 
-Framework: Ultralytics YOLOv8
+---
 
-Pretrained Weights: COCO
+#### 3.2 Detailed Metrics (Per-Class)
 
-Hardware: NVIDIA Tesla T4 (15GB VRAM)
+**Baseline (416×416):**
+- Precision: 0.5563
+- Recall: 0.3217
+- mAP@0.5: 0.3520
+- mAP@0.5:0.95: 0.1427
 
-Batch Size: 32
+**Experiment (608×608):**
+- Precision: 0.4895
+- Recall: 0.4000
+- mAP@0.5: 0.3624
+- mAP@0.5:0.95: 0.1490
 
-✅ Training Configurations
-Baseline — 416×416
+---
 
-Epochs: 10
+### 4. Analysis & Discussion
 
-Training Time: 1.99 min
+#### 4.1 Key Findings
 
-Device: GPU
+**Recall Improvement (+24.25%):**
+- 608×608 detects significantly more garbage objects
+- Important when missing garbage is problematic
+- Lower recall in 416×416 means some garbage is not detected
 
-Experiment — 608×608
+**Precision Trade-off (−11.7%):**
+- 608×608 has more false positives
+- Better detection rate but more false alarms
 
-Epochs: 10
+**mAP Improvement (+3.1%):**
+- Higher accuracy at both mAP@0.5 and mAP@0.5:0.95
 
-Training Time: 3.23 min
+**Inference Speed Impact (+100%):**
+- 608×608 doubles inference time
+- Still real-time on GPU
 
-Device: GPU
+**Training Cost Increase (+62.3%):**
+- 608×608 requires more training time
+- Model size remains identical
 
-📊 Results
-🔍 Performance Metrics Comparison
-Metric	416×416	608×608	Change
-mAP@0.5	0.3520	0.3630	+3.1%
-mAP@0.5:0.95	0.1420	0.1490	+4.9%
-Precision	0.5550	0.4900	−11.7%
-Recall	0.3220	0.4000	+24.2%
-Inference Time	1.3 ms	2.6 ms	+100%
-Training Time	1.99 min	3.23 min	+62.3%
-✅ Key Observations
+---
 
-608×608 catches more garbage objects (higher recall).
+#### 4.2 Input Size Impact Analysis
 
-416×416 has fewer false positives (higher precision).
+**416×416 Advantages:**
+- Faster inference
+- Higher precision
+- Faster training
+- Better for resource-constrained devices
 
-608×608 improves mAP but costs double inference time.
+**608×608 Advantages:**
+- Better recall
+- Higher overall accuracy
+- More robust to object scale variations
+- Better for accuracy-critical applications
 
-Both are real-time on GPU; CPU is too slow for deployment.
+---
 
-🧠 Analysis & Discussion
-⭐ Advantages of 416×416
+#### 4.3 GPU vs CPU Comparison
 
-Fastest inference
+**Training Time:**
+- GPU (T4):
+  - 416×416: 1.99 minutes
+  - 608×608: 3.23 minutes
+- Estimated CPU Time:
+  - 30–50 minutes (15–25× slower)
 
-More precise (fewer false alarms)
+**Inference Speed:**
+- GPU: 1.3–2.6 ms/image
+- CPU: 100–200 ms/image (not real-time)
 
-Best for edge devices / low compute
+---
 
-⭐ Advantages of 608×608
+### 5. Qualitative Analysis
 
-Detects more garbage
+**Observations:**
+- Both models successfully detect garbage
+- 608×608 shows larger bounding boxes
+- 608×608 detects more small objects
+- 416×416 has fewer false positives
+- Differences small visually, but real in metrics
 
-Higher mAP
+**Sample Detections:**
+1. Trash bins with multiple garbage items → both detect well
+2. Loose garbage → 608×608 better
+3. Garbage in landfill → similar performance
+4. Urban litter → 608×608 better
+5. Mixed debris → similar, slight advantage for 608×608
 
-More robust to scale variations
+---
 
-Best for accuracy-critical applications
+### 6. Conclusion
 
-🚀 GPU vs CPU
+#### Summary
 
-GPU training: 2–3 minutes
+This lab compared YOLOv8 performance across two input sizes (416×416 and 608×608). Key findings:
 
-CPU training: 30–50 minutes (15–25× slower)
+1. Larger input size (608×608) provides better detection capability (+24.2% recall).
+2. Input size creates a speed–accuracy trade-off:
+   - 416×416: faster, fewer false positives
+   - 608×608: slower, catches more garbage
+3. GPU acceleration is essential for practical experimentation.
 
-GPU inference: 380–770 FPS
+---
 
-CPU inference: not real-time
+### Recommendations
 
-🖼️ Qualitative Results
+**For Production Deployment:**
+Use 608×608 with GPU for maximum accuracy.
 
-Observed trends:
+**For Edge Devices:**
+Use 416×416 for faster inference.
 
-608×608 detects more small objects
+**For Mobile Applications:**
+Use model quantization.
 
-416×416 produces fewer false positives
+**Future Work:**
+- Test 512×512
+- Experiment with YOLOv8s, YOLOv8m
+- Model pruning and quantization
+- Benchmark CPU performance
+- Collect more diverse garbage images
 
-Both perform well on mixed garbage scenes
+---
 
-✅ Conclusion
-Final Takeaways
+### Impact Summary
 
-608×608 improves detection rate by +24.2%
+- Detection Rate: +24.2% improvement with 608×608
+- Accuracy: +3.1% improvement in mAP@0.5
+- Speed Cost: +100% inference time
+- Training Cost: +62.3% more time
+- Deployment: Both sizes viable depending on requirements
 
-416×416 is faster but slightly less accurate
-
-GPU acceleration is essential for practical experimentation
-
-Best input size depends on your deployment needs
-
-✅ Recommendations
-For Production Deployment
-
-Use 608×608 (higher recall + better accuracy).
-
-For Edge Devices
-
-Use 416×416 (speed-optimized).
-
-For Mobile Apps
-
-Use quantized models (8-bit or FP16).
-
-For Future Work
-
-Try input size 512×512 (middle ground)
-
-Test larger YOLOv8 models (s/m/l/x)
-
-Add pruning + quantization
-
-Expand dataset
-
-📧 Need the YOLOv8 Notebook (.ipynb)?
-
-Contact: amirthaganeshramesh@gmail.com
