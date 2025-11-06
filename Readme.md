@@ -368,9 +368,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Contact
 
 For questions or issues, please open an issue on GitHub or contact the maintainers.
-
+*mail* : amirthaganeshramesh@gmail.com 
 ---
 
 **Status:** ✅ Complete Lab Report  
 **Last Updated:** 2025  
-**Author:** Your Name/Team
+**Author:** Amirthaganesh R
