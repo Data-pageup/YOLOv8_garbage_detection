@@ -367,11 +367,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-For questions or issues, please contact
+For questions, issues or need complete .ipynb please contact
 
 mail: ( amirthaganeshramesh@gmail.com )
 ---
 
-**Status:** ✅ Complete Lab Report  
+ 
 **Last Updated:** 2025  
 **Author:** Amirthaganesh R
