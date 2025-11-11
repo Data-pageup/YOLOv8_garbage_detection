@@ -147,7 +147,7 @@ Optimizer:          SGD
 
 ## Recommendations
 
-### For Production Deployment 🏭
+### For Production Deployment 
 **Use 608×608 with GPU**
 ```
 - Maximum accuracy (mAP@0.5: 0.3630)
@@ -156,7 +156,7 @@ Optimizer:          SGD
 - Ideal when missing detections is costly
 ```
 
-### For Edge Devices / IoT 🔌
+### For Edge Devices / IoT 
 **Use 416×416**
 ```
 - Lower computational requirements
@@ -165,7 +165,7 @@ Optimizer:          SGD
 - Ideal when computational resources are limited
 ```
 
-### For Mobile Applications 📱
+### For Mobile Applications 
 **Use 416×416 with Quantization**
 ```
 - Deploy YOLOv8n-int8 or YOLOv8n-fp16
