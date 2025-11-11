@@ -109,14 +109,14 @@ Optimizer:          SGD
 
 ### Key Findings
 
-#### 608×608 Advantages ✅
+#### 608×608 Advantages 
 - **+24.2% Recall Improvement** - Significantly better at detecting garbage objects
 - **+3.1% mAP@0.5 Improvement** - Higher overall accuracy
 - **Better Small Object Detection** - Captures loose garbage and small debris
 - **Robust to Scale Variations** - Handles objects of different sizes better
 - **Suitable for Accuracy-Critical Applications**
 
-#### 416×416 Advantages ✅
+#### 416×416 Advantages 
 - **Faster Inference** - 1.3ms vs 2.6ms per image (50% faster)
 - **Higher Precision** - Fewer false positives (55.5% vs 49%)
 - **Faster Training** - 1.99 min vs 3.23 min (38% faster)
@@ -173,7 +173,7 @@ Optimizer:          SGD
 - Maintain reasonable accuracy for mobile use
 ```
 
-### For Custom Requirements 🎯
+### For Custom Requirements 
 - **Minimize False Positives:** Use 416×416
 - **Minimize False Negatives:** Use 608×608
 - **Balance Speed & Accuracy:** Test 512×512 (future work)
